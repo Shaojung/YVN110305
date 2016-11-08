@@ -52,21 +52,14 @@ public class MyAdapter1 extends BaseAdapter {
         Log.d("MLIST", "getView() : " + position + "," + data[position]);
         if (convertView == null)
         {
-            Log.d("MLIST", "convertView is null");
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(R.layout.myitem, null);
         }
-        else
-        {
-            Log.d("MLIST", "convertView is not null");
-            TextView tv1 = (TextView) convertView.findViewById(R.id.textView);
-            Log.d("MLIST", "tv1:" + tv1.getText().toString());
-        }
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.myitem, null);
 
-        TextView tv = (TextView) v.findViewById(R.id.textView);
+        TextView tv = (TextView) convertView.findViewById(R.id.textView);
         tv.setText(data[position]);
 
-        Button btn = (Button) v.findViewById(R.id.button);
+        Button btn = (Button) convertView.findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +67,7 @@ public class MyAdapter1 extends BaseAdapter {
             }
         });
 
-        CheckBox chk = (CheckBox) v.findViewById(R.id.checkBox);
+        CheckBox chk = (CheckBox) convertView.findViewById(R.id.checkBox);
         chk.setChecked(chks[position]);
         chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -82,6 +75,6 @@ public class MyAdapter1 extends BaseAdapter {
                 chks[position] = isChecked;
             }
         });
-        return v;
+        return convertView;
     }
 }
