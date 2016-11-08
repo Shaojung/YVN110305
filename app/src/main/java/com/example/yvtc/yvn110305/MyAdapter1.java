@@ -1,11 +1,15 @@
 package com.example.yvtc.yvn110305;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ import android.widget.Toast;
 public class MyAdapter1 extends BaseAdapter {
     Context context;
     String[] data;
+    boolean[] chks;
     public MyAdapter1(Context c, String[] f)
     {
         context = c;
@@ -23,6 +28,12 @@ public class MyAdapter1 extends BaseAdapter {
     }
     @Override
     public int getCount() {
+        Log.d("MLIST", "getCount()");
+        chks = new boolean[data.length];
+        for (boolean b: chks)
+        {
+            b = false;
+        }
         return data.length;
     }
 
@@ -38,6 +49,7 @@ public class MyAdapter1 extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        Log.d("MLIST", "getView() : " + position + "," + data[position]);
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.myitem, null);
 
@@ -49,6 +61,15 @@ public class MyAdapter1 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, data[position], Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        CheckBox chk = (CheckBox) v.findViewById(R.id.checkBox);
+        chk.setChecked(chks[position]);
+        chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                chks[position] = isChecked;
             }
         });
         return v;
