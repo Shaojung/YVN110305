@@ -73,15 +73,13 @@ public class MyAdapter1 extends BaseAdapter {
                 Toast.makeText(context, data[position], Toast.LENGTH_SHORT).show();
             }
         });
-
-        holder.chk.setChecked(chks[position]);
         holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 chks[position] = isChecked;
             }
         });
-
+        holder.chk.setChecked(chks[position]);
         return convertView;
     }
 
