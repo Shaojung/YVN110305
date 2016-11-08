@@ -12,6 +12,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ListView lv;
+    String[] fruits = {"蘋果", "香蕉", "鳳梨", "芭樂", "檸檬"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
