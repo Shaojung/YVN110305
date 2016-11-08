@@ -50,6 +50,16 @@ public class MyAdapter1 extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Log.d("MLIST", "getView() : " + position + "," + data[position]);
+        if (convertView == null)
+        {
+            Log.d("MLIST", "convertView is null");
+        }
+        else
+        {
+            Log.d("MLIST", "convertView is not null");
+            TextView tv1 = (TextView) convertView.findViewById(R.id.textView);
+            Log.d("MLIST", "tv1:" + tv1.getText().toString());
+        }
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.myitem, null);
 
